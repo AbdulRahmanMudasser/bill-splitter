@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:tip_calculator/controllers/home_controller.dart';
 import 'package:tip_calculator/utils/extensions/responsive_extension.dart';
 
 import '../../../utils/styling/app_colors.dart';
@@ -42,12 +46,25 @@ class CalculationRow extends StatelessWidget {
             ),
           ],
         ),
-        Text(
-          "\$$amount",
-          style: AppTextStyles.lightLargeTextStyle.copyWith(
-            color: AppColors.secondaryColor,
-            fontSize: 21.0.sp,
-            letterSpacing: 1.25,
+        SizedBox(
+          width: 1.0.wp,
+        ),
+        Obx(
+          () => Container(
+            alignment: Alignment.centerRight,
+            width: 45.0.wp,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: Text(
+                "${Get.find<HomePageController>().whatIsTheCurrencySymbol} $amount",
+                style: AppTextStyles.lightLargeTextStyle.copyWith(
+                  color: AppColors.secondaryColor,
+                  fontSize: 18.0.sp,
+                  letterSpacing: 2.5,
+                ),
+              ),
+            ),
           ),
         ),
       ],

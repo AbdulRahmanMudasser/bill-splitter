@@ -9,10 +9,12 @@ class ReusableButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    this.color = AppColors.darkTextColor,
   });
 
   final String text;
   final GestureTapCallback onTap;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ReusableButton extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 4.0.wp, vertical: 1.5.hp),
+        padding: EdgeInsets.symmetric(horizontal: 4.0.wp, vertical: 1.0.hp),
         decoration: BoxDecoration(
           color: AppColors.secondaryColor,
           borderRadius: BorderRadius.circular(8),
@@ -29,7 +31,7 @@ class ReusableButton extends StatelessWidget {
         child: Text(
           text,
           style: AppTextStyles.darkMediumTextStyle.copyWith(
-            color: AppColors.darkTextColor,
+            color: color,
             letterSpacing: 1.25,
             fontFamily: '',
           ),

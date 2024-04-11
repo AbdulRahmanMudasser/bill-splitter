@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tip_calculator/utils/extensions/responsive_extension.dart';
 import 'package:tip_calculator/utils/styling/app_text_styles.dart';

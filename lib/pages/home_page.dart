@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:tip_calculator/controllers/home_controller.dart';
+import 'package:tip_calculator/models/bill_entry_model.dart';
 import 'package:tip_calculator/pages/widgets/home%20page/calculate_row.dart';
 import 'package:tip_calculator/pages/widgets/home%20page/main_container.dart';
 import 'package:tip_calculator/pages/widgets/home%20page/tip_card.dart';
@@ -254,6 +255,134 @@ class HomePage extends GetView<HomePageController> {
                         ],
                       ),
                     ),
+                  ),
+
+                  SizedBox(
+                    height: 3.0.hp,
+                  ),
+
+                  // bill history
+                  Text(
+                    "B I L L   S U M M A R Y   &   H I S T O R Y",
+                    style: AppTextStyles.darkSmallTextStyle,
+                  ),
+
+                  SizedBox(
+                    height: 3.0.hp,
+                  ),
+
+                  Container(
+                    alignment: Alignment.center,
+                    height: 22.0.hp,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 5.0.wp, vertical: 2.0.hp),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Obx(
+                      () => controller.billEntry.isEmpty
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "G E N E R A T E D   B I L L",
+                                  textAlign: TextAlign.center,
+                                  style: AppTextStyles.lightMediumTextStyle,
+                                ),
+                                Text(
+                                  "W I L L   B E   S H O W N   H E R E",
+                                  textAlign: TextAlign.center,
+                                  style: AppTextStyles.lightMediumTextStyle,
+                                ),
+                              ],
+                            )
+                          : ListView.builder(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.vertical,
+                              itemCount: controller.billEntry.length,
+                              itemBuilder: (context, index) {
+                                // to display the latest on top
+                                List<BillEntry> reversedList =
+                                    controller.billEntry.reversed.toList();
+                                BillEntry entry = reversedList[index];
+                                return ListTile(
+                                  minLeadingWidth: 0,
+                                  contentPadding: EdgeInsets.zero,
+                                  tileColor: AppColors.primaryColor,
+                                  title: Padding(
+                                    padding: EdgeInsets.only(bottom: 2.0.hp),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${entry.entryDate}",
+                                          style: AppTextStyles.lightSmallTextStyle.copyWith(),
+                                        ),
+                                        Text(
+                                          "${entry.entryTime}",
+                                          style: AppTextStyles.lightSmallTextStyle,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "T O T A L   B I L L  :   ${entry.currentCurrency} ${entry.totalBill}",
+                                        style: AppTextStyles.lightSmallTextStyle
+                                            .copyWith(fontSize: 8.0.sp),
+                                      ),
+                                      SizedBox(
+                                        height: 0.75.hp,
+                                      ),
+                                      Text(
+                                        "T I P   %   :   ${entry.tipPercentage} %",
+                                        style: AppTextStyles.lightSmallTextStyle
+                                            .copyWith(fontSize: 8.0.sp),
+                                      ),
+                                      SizedBox(
+                                        height: 0.75.hp,
+                                      ),
+                                      Text(
+                                        "N O.   O F   P E R S O N  :   ${entry.numberOfPerson}",
+                                        style: AppTextStyles.lightSmallTextStyle
+                                            .copyWith(fontSize: 8.0.sp),
+                                      ),
+                                      SizedBox(
+                                        height: 0.75.hp,
+                                      ),
+                                      Text(
+                                        "T I P   /   P E R S O N   :   ${entry.currentCurrency} ${entry.tipAmountPerPerson}",
+                                        style: AppTextStyles.lightSmallTextStyle
+                                            .copyWith(fontSize: 8.0.sp),
+                                      ),
+                                      SizedBox(
+                                        height: 0.75.hp,
+                                      ),
+                                      Text(
+                                        "T O T A L   /   P E R S O N   :   ${entry.currentCurrency} ${entry.totalAmountPerPerson}",
+                                        style: AppTextStyles.lightSmallTextStyle
+                                            .copyWith(fontSize: 8.0.sp),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 3.0.hp,
+                  ),
+
+                  // generate bill
+                  ReusableButton(
+                    text: "G E N E R A T E    B I L L",
+                    onTap: () => controller.generateBillSummary(),
+                    color: AppColors.lightTextColor,
                   ),
                 ],
               ),

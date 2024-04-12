@@ -60,7 +60,7 @@ class CalculationRow extends StatelessWidget {
                 "${Get.find<HomePageController>().whatIsTheCurrencySymbol} $amount",
                 style: AppTextStyles.lightLargeTextStyle.copyWith(
                   color: AppColors.secondaryColor,
-                  fontSize: 18.0.sp,
+                  fontSize: 16.0.sp,
                   letterSpacing: 2.5,
                 ),
               ),

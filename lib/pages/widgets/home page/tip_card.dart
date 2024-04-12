@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:tip_calculator/controllers/home_controller.dart';
 import 'package:tip_calculator/utils/extensions/responsive_extension.dart';
 

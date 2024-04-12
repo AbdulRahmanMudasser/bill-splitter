@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Bill Splitter',
       theme: ThemeData(
         useMaterial3: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: AppRoutes.INITIAL,
       initialBinding: ControllersBindings(),

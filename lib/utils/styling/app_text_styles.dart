@@ -37,6 +37,14 @@ class AppTextStyles {
     letterSpacing: 1.0,
   );
 
+  static TextStyle lightMediumTextStyle = TextStyle(
+    fontFamily: 'TypeWriter',
+    fontSize: 12.0.sp,
+    color: AppColors.lightTextColor,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.0,
+  );
+
   static TextStyle lightLargeTextStyle = TextStyle(
     fontFamily: 'TypeWriter',
     fontSize: 14.0.sp,
